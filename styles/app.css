@@ -1,0 +1,41 @@
+.epin_wrapper {
+  padding-top: 40px;
+}
+.epin_wrapper input[type=text] {
+  width: calc(100% - 30px);
+  padding: 8px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.epin_wrapper label {
+  margin: 8px;
+  display: inline-block;
+}
+.epin_wrapper input[type=checkbox] {
+  width: 32px;
+  height: 32px;
+  padding: 8px !important;
+}
+.epin_wrapper button#save {
+  background-color: #000;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.epin_wrapper .success {
+  background-color: rgb(201, 232, 217);
+  border-color: rgb(52, 161, 109);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  color: #111;
+  font-size: 16px;
+  padding: 8px 16px;
+  width: 92%;
+  margin-bottom: 40px;
+}
+
+/*# sourceMappingURL=app.css.map */
