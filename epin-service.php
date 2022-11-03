@@ -16,6 +16,10 @@
 */
 
 define( 'EPIN_VERSION', '0.0.1' );
+define( 'EPIN__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
+require_once EPIN__PLUGIN_DIR . 'includes/class.config.php';
+require_once EPIN__PLUGIN_DIR . 'includes/class.service.php';
 
 /* Menu */
 function epin_admin_menu_option()
@@ -36,14 +40,28 @@ add_action('admin_menu', 'epin_admin_menu_option');
 /* Service Keys Form */
 function epin_form()
 {
+  
+    $service = new Service();
+
     if(array_key_exists('submit_scripts_update', $_POST)){
         update_option('epin_active', (isset($_POST['epin_active']) ? $_POST['epin_active'] : "false"));
         update_option('epin_base_url', $_POST['epin_base_url']);
         update_option('epin_authorization', $_POST['epin_authorization']);
         update_option('epin_api_name', $_POST['epin_api_name']);
         update_option('epin_api_key', $_POST['epin_api_key']);
-        update_option('epin_last_update', time());
         echo "<div class=\"success\">Kaydedildi.</div>";
+    }
+
+    if(array_key_exists('update_datas', $_POST)){
+      $result = $service->get("/GetGameList");
+
+      
+      foreach($result->GameDto->GameViewModel as $items){
+        foreach($items->GameItemsViewModel as $item){
+          var_dump($item);
+          echo "<br><br><hr><br><br>";
+        }
+      }
     }
 
     $epin_active = get_option('epin_active', 'none');
@@ -54,7 +72,7 @@ function epin_form()
     $epin_last_update = get_option('epin_last_update', 'none');
 
     $content = '<form action="" method="post">';
-    $content .= '<label for="epin_active">Durumu: </label><input type="checkbox" id="epin_active" name="epin_active" value="true" '.($epin_active == "true" ? "checked" : "").' class="tgl tgl-light" />';
+    $content .= '<input type="checkbox" id="epin_active" name="epin_active" value="true" '.($epin_active == "true" ? "checked" : "").' class="tgl tgl-light" /><label for="epin_active">Epin Games servislerini aktif et.</label>';
     $content .= '<br><br>';
     $content .= '<label for="epin_base_url">Base URL</label><input type="text" id="epin_base_url" name="epin_base_url" value="'.$epin_base_url.'" />';
     $content .= '<br><br>';
@@ -66,8 +84,12 @@ function epin_form()
     $content .= '<br><br>';
     $content .= '<button type="submit" id="save" name="submit_scripts_update">Kaydet</button>';
     $content .= '<br><br>';
-    $content .= '<span>Son Güncelleme: '.$epin_last_update.'</span>';
+    $content .= '<span>Son Güncelleme: '.date("d.m.Y H:i", $epin_last_update).'</span>';
+    $content .= '<br><br>';
     $content .= "</form>";
+    $content .= '<form action="" method="post">';
+    $content .= '<button name="update_datas">Verileri Güncelle</button>';
+    $content .= '</form>';
 
     echo $content;
 }
