@@ -1,12 +1,19 @@
 .epin_wrapper {
   padding-top: 40px;
 }
-.epin_wrapper input[type=text] {
-  width: calc(100% - 30px);
+.epin_wrapper input[type=text], .epin_wrapper select {
+  min-width: calc(100% - 30px);
   padding: 8px 15px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 8px;
+}
+.epin_wrapper select.selectbox {
+  position: absolute;
+  min-width: 20%;
+  margin-left: -20%;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 .epin_wrapper label {
   margin: 8px;
@@ -25,17 +32,32 @@
   padding: 8px 15px;
   cursor: pointer;
 }
-.epin_wrapper .success {
-  background-color: rgb(201, 232, 217);
-  border-color: rgb(52, 161, 109);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px;
-  color: #111;
+.epin_wrapper button#allItems {
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
   font-size: 16px;
-  padding: 8px 16px;
-  width: 92%;
-  margin-bottom: 40px;
+  padding: 8px 15px;
+  cursor: pointer;
+  float: right;
+  margin-right: 40px;
+}
+.epin_wrapper .message {
+  position: fixed;
+  background-color: #111;
+  color: #fff;
+  padding: 12px 20px;
+  right: 20px;
+  bottom: 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.epin_wrapper .message a.close {
+  color: #bb6600;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=app.css.map */

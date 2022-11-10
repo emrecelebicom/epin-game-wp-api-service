@@ -2,12 +2,21 @@
 
     padding-top: 40px;
 
-    input[type=text]{
-        width: calc(100% - 30px);
+    input[type=text], select{
+        min-width: calc(100% - 30px);
         padding: 8px 15px;
         font-size: 16px;
         border: 1px solid #ddd;
         border-radius: 8px;
+    }
+    
+    
+    select.selectbox {
+        position: absolute;
+        min-width: 20%;
+        margin-left: -20%;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
     }
 
     label{
@@ -30,17 +39,34 @@
         cursor: pointer;
     }
 
-    .success{
-        background-color: rgb(201, 232, 217);
-        border-color:  rgb(52, 161, 109);
-        border-width: 1px;
-        border-style: solid;
-        border-radius: 4px;
-        color: #111;
+    button#allItems{
+        border: 1px solid #000;
+        background-color: transparent;
+        color: #000;
         font-size: 16px;
-        padding: 8px 16px;
-        width: 92%;
-        margin-bottom: 40px;
+        padding: 8px 15px;
+        cursor: pointer;
+        float: right;
+        margin-right: 40px;
+    }
+
+    .message{
+        position: fixed;
+        background-color: #111;
+        color: #fff;
+        padding: 12px 20px;
+        right: 20px;
+        bottom: 20px;
+        font-size: 16px;
+        border-radius: 5px;
+
+        a.close{
+            color: #bb6600;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 12px;
+        }
     }
 
 }
